@@ -40,19 +40,20 @@ public class Main {
         int correct = 0;
         int incorrect = 0;
 
-        Scanner scanner = new Scanner(System.in);
-        for (int i = 0; i < 5 && i < spanishWords.size(); i++) {
-            String spanish = spanishWords.get(i);
-            System.out.print("Translate to English: " + spanish + " -> ");
-            String userAnswer = scanner.nextLine().trim();
+        try (Scanner scanner = new Scanner(System.in)) {
+            for (int i = 0; i < 5 && i < spanishWords.size(); i++) {
+                String spanish = spanishWords.get(i);
+                System.out.print("Translate to English: " + spanish + " -> ");
+                String userAnswer = scanner.nextLine().trim();
 
-            String expected = dictionary.get(spanish);
-            if (expected.equalsIgnoreCase(userAnswer)) {
-                correct++;
-                System.out.println("Correct.");
-            } else {
-                incorrect++;
-                System.out.println("Incorrect. Expected: " + expected);
+                String expected = dictionary.get(spanish);
+                if (expected.equalsIgnoreCase(userAnswer)) {
+                    correct++;
+                    System.out.println("Correct.");
+                } else {
+                    incorrect++;
+                    System.out.println("Incorrect. Expected: " + expected);
+                }
             }
         }
 
