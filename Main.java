@@ -1,5 +1,9 @@
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -29,5 +33,30 @@ public class Main {
         dictionary.put("rosa", "rose");
         dictionary.put("trabajo", "work");
         dictionary.put("elefante", "elephant");
+
+        List<String> spanishWords = new ArrayList<>(dictionary.keySet());
+        Collections.shuffle(spanishWords);
+
+        int correct = 0;
+        int incorrect = 0;
+
+        Scanner scanner = new Scanner(System.in);
+        for (int i = 0; i < 5 && i < spanishWords.size(); i++) {
+            String spanish = spanishWords.get(i);
+            System.out.print("Translate to English: " + spanish + " -> ");
+            String userAnswer = scanner.nextLine().trim();
+
+            String expected = dictionary.get(spanish);
+            if (expected.equalsIgnoreCase(userAnswer)) {
+                correct++;
+                System.out.println("Correct.");
+            } else {
+                incorrect++;
+                System.out.println("Incorrect. Expected: " + expected);
+            }
+        }
+
+        System.out.println("Correct answers: " + correct);
+        System.out.println("Incorrect answers: " + incorrect);
     }
 }
